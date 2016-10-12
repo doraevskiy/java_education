@@ -27,6 +27,23 @@
         # check unique user
         $result = pg_query_params($dbconn, "select id, password from users where login=$1", array($login))
             or die('Ошибка запроса: ' . pg_last_error());
+
+        $data = pg_fetch_row($result);
+
+        # check password
+        if($data['password'] === md5(md5($_POST['password'])))
+        {
+            # generate random number
+            $hash = md5(generateCode(10));
+
+            if(!@$_POST['not_attach_ip'])
+            {
+                # transform ip address to integer
+                $insip = ip2long($_SERVER['REMOTE_ADDR']);
+            }
+
+            
+        }
     }
 ?>
 
