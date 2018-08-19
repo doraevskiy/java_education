@@ -1,2 +1,2 @@
-# php_examples
+# java_education
 for educational purposes
